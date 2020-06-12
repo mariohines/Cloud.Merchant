@@ -2,7 +2,7 @@ namespace Cloud.Merchant.Business.Core.Configuration
 {
     public sealed class RuntimeConfiguration
     {
-        public DbProvider DatabaseProvider { get; set; }
-        public string DatabaseConnectionString { get; set; }
+        public DbProvider DbConnectionProvider { get; set; }
+        public string DbConnectionString { get; set; }
     }
 }

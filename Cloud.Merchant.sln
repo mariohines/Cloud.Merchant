@@ -38,12 +38,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cloud.Merchant.Business.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cloud.Merchant.Domain", "src\Cloud.Merchant.Domain\Cloud.Merchant.Domain.csproj", "{3216D7BE-58D6-4BA6-9603-66EB85D32F5A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "build", "build\build.csproj", "{04009463-76A0-46AB-BB6F-87DFEE52B507}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04009463-76A0-46AB-BB6F-87DFEE52B507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04009463-76A0-46AB-BB6F-87DFEE52B507}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E8F32FC-2B02-4029-8790-4D49F71321E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0E8F32FC-2B02-4029-8790-4D49F71321E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E8F32FC-2B02-4029-8790-4D49F71321E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -116,5 +120,6 @@ Global
 		{EB4F6005-902F-4BD0-93A6-820F78E3ACAE} = {DDB1E4E9-0973-4D9B-89D5-FA3CCF15AD2B}
 		{BB8E94FC-C39B-4263-AA49-3F543FE151A5} = {A143A34B-6AC9-4EDE-BEF4-8F179B81B9F0}
 		{3216D7BE-58D6-4BA6-9603-66EB85D32F5A} = {A143A34B-6AC9-4EDE-BEF4-8F179B81B9F0}
+		{04009463-76A0-46AB-BB6F-87DFEE52B507} = {468D1935-F567-42EA-BB90-C401A47DEF39}
 	EndGlobalSection
 EndGlobal

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Cloud.Merchant.Persistence.Abstractions.Context;
 using Cloud.Merchant.Persistence.Abstractions.Settings;
+using Cloud.Merchant.Persistence.Core;
 
 namespace Cloud.Merchant.Persistence.Orchestration.Context
 {
@@ -13,6 +14,8 @@ namespace Cloud.Merchant.Persistence.Orchestration.Context
         private readonly IDbSettings<SqlConnection> _dbSettings;
         private Lazy<DbConnection> CurrentConnection => new Lazy<DbConnection>(() => _dbSettings.CreateConnection());
         private Lazy<Task<IDbTransaction>> CurrentTransaction => new Lazy<Task<IDbTransaction>>(async () => await CurrentConnection.Value.BeginTransactionAsync(IsolationLevel.ReadCommitted));
+        
+        public DbProvider Provider => DbProvider.SqlServer;
 
         public SqlServerDbContext(IDbSettings<SqlConnection> dbSettings) {
             _dbSettings = dbSettings;

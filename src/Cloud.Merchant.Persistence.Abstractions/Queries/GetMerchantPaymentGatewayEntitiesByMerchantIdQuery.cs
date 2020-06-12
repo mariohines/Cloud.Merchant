@@ -4,11 +4,11 @@ using MediatR;
 
 namespace Cloud.Merchant.Persistence.Abstractions.Queries
 {
-    public readonly struct GetMerchantPaymentGatewaysByMerchantIdQuery : IRequest<IEnumerable<MerchantPaymentGatewayEntity>>
+    public readonly struct GetMerchantPaymentGatewayEntitiesByMerchantIdQuery : IRequest<IEnumerable<MerchantPaymentGatewayEntity>>
     {
         public long Key { get; }
 
-        public GetMerchantPaymentGatewaysByMerchantIdQuery(long key) {
+        public GetMerchantPaymentGatewayEntitiesByMerchantIdQuery(long key) {
             Key = key;
         }
     }

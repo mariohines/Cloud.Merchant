@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Cloud.Merchant.Persistence.Abstractions;
@@ -22,15 +23,23 @@ namespace Cloud.Merchant.Persistence.Orchestration.Handlers.Queries
             _dbContext = dbContext;
             _logger = logger;
         }
-        
+
         public async Task<MerchantEntity> Handle(GetMerchantEntityByPublicIdQuery request, CancellationToken cancellationToken) {
-            var query = DbQuery.Create(GetMerchantEntityByPublicIdSql, request, token: cancellationToken);
-            using var connection = _dbContext.CreateConnection();
-            var result = await connection.QuerySingleAsync<MerchantEntity>(query.BuildCommandDefinition());
-            if (result != null) return result;
-            var exception = new MerchantEntityNotFoundException();
-            _logger.LogError(exception, $"Unable to find a merchant with PublicId of: '{request.Key}'.");
-            throw exception;
+            try {
+                var query = DbQuery.Create(GetMerchantEntityByPublicIdSql, request, token: cancellationToken);
+                using var connection = _dbContext.CreateConnection();
+                var result = await connection.QuerySingleOrDefaultAsync<MerchantEntity>(query.BuildCommandDefinition());
+                if (result != null) return result;
+                throw new MerchantEntityNotFoundException();
+            }
+            catch (MerchantEntityNotFoundException e) {
+                _logger.LogError(e, $"Unable to find a merchant with PublicId of: '{request.Key}'.");
+                throw;
+            }
+            catch (Exception e) {
+                _logger.LogError(e, "An unknown error has occurred.");
+                throw;
+            }
         }
     }
 }

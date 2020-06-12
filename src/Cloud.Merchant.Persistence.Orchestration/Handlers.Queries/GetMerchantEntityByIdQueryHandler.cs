@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Cloud.Merchant.Persistence.Abstractions;
@@ -24,13 +25,21 @@ namespace Cloud.Merchant.Persistence.Orchestration.Handlers.Queries
         }
         
         public async Task<MerchantEntity> Handle(GetMerchantEntityByIdQuery request, CancellationToken cancellationToken) {
-            var query = DbQuery.Create(GetMerchantEntityByIdSql, request, token: cancellationToken);
-            using var connection = _dbContext.CreateConnection();
-            var result = await connection.QuerySingleAsync<MerchantEntity>(query.BuildCommandDefinition());
-            if (result != null) return result;
-            var exception = new MerchantEntityNotFoundException();
-            _logger.LogError(exception, $"Unable to find a merchant with Id of: '{request.Key}'.");
-            throw exception;
+            try {
+                var query = DbQuery.Create(GetMerchantEntityByIdSql, request, token: cancellationToken);
+                using var connection = _dbContext.CreateConnection();
+                var result = await connection.QuerySingleAsync<MerchantEntity>(query.BuildCommandDefinition());
+                if (result != null) return result;
+                throw new MerchantEntityNotFoundException();
+            }
+            catch (MerchantEntityNotFoundException exception) {
+                _logger.LogError(exception, $"Unable to find a merchant with Id of: '{request.Key}'.");
+                throw;
+            }
+            catch (Exception e) {
+                _logger.LogError(e, "An unknown error has occurred.");
+                throw;
+            }
         }
     }
 }

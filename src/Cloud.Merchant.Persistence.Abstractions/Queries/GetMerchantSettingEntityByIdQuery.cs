@@ -3,11 +3,11 @@ using MediatR;
 
 namespace Cloud.Merchant.Persistence.Abstractions.Queries
 {
-    public struct GetMerchantSettingByMerchantIdQuery : IRequest<MerchantSettingEntity>
+    public readonly struct GetMerchantSettingEntityByIdQuery : IRequest<MerchantSettingEntity>
     {
         public long Key { get; }
 
-        public GetMerchantSettingByMerchantIdQuery(long key) {
+        public GetMerchantSettingEntityByIdQuery(long key) {
             Key = key;
         }
     }

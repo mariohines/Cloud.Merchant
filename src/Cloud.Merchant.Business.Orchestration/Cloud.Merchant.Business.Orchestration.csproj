@@ -4,4 +4,9 @@
         <TargetFramework>netstandard2.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Handlers.Commands" />
+      <Folder Include="Handlers.Queries" />
+    </ItemGroup>
+
 </Project>

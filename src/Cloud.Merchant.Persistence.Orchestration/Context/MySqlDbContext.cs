@@ -13,7 +13,7 @@ namespace Cloud.Merchant.Persistence.Orchestration.Context
     {
         private readonly IDbSettings<MySqlConnection> _dbSettings;
         private Lazy<DbConnection> CurrentConnection => new Lazy<DbConnection>(() => _dbSettings.CreateConnection());
-        private Lazy<Task<IDbTransaction>> CurrentTransaction => new Lazy<Task<IDbTransaction>>(async () => await CurrentConnection.Value.BeginTransactionAsync(IsolationLevel.ReadCommitted));
+        private Lazy<Task<DbTransaction>> CurrentTransaction => new Lazy<Task<DbTransaction>>(async () => await CurrentConnection.Value.BeginTransactionAsync(IsolationLevel.ReadCommitted));
 
         public DbProvider Provider => DbProvider.MySql;
 
@@ -25,7 +25,7 @@ namespace Cloud.Merchant.Persistence.Orchestration.Context
             return CurrentConnection.Value;
         }
 
-        public async Task<IDbTransaction> CreateTransactionAsync() {
+        public async Task<DbTransaction> CreateTransactionAsync() {
             return await CurrentTransaction.Value;
         }
     }

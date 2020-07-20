@@ -32,11 +32,11 @@ namespace Cloud.Merchant.Persistence.Orchestration.Handlers.Commands
                 return await connection.ExecuteScalarAsync<Guid>(query.BuildCommandDefinition());
             }
             catch (IncorrectEntityOperationException e) {
-                _logger.LogError(e, "An incorrect request has been made based on the data provided.");
+                _logger.LogError(e, ExceptionMessages.Standard.KnownError);
                 throw;
             }
             catch (Exception e) {
-                _logger.LogError(e, "An unknown error has occurred.");
+                _logger.LogError(e, ExceptionMessages.Standard.UnknownError);
                 throw;
             }
         }

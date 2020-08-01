@@ -5,10 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MediatR" Version="8.0.1" />
+      <PackageReference Include="MediatR" Version="8.0.2" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Cloud.Merchant.Domain\Cloud.Merchant.Domain.csproj" />
       <ProjectReference Include="..\Cloud.Merchant.Persistence.Core\Cloud.Merchant.Persistence.Core.csproj" />
     </ItemGroup>
 

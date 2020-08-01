@@ -5,7 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Queries" />
+      <ProjectReference Include="..\Cloud.Merchant.Domain\Cloud.Merchant.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="8.0.2" />
     </ItemGroup>
 
 </Project>
